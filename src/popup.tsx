@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
-const Popup = () => {
+const Popup = (): JSX.Element => {
   const [count, setCount] = useState(0);
   const [currentURL, setCurrentURL] = useState<string>();
 
   useEffect(() => {
-    chrome.action.setBadgeText({ text: count.toString() });
+    void chrome.action.setBadgeText({ text: count.toString() });
   }, [count]);
 
   useEffect(() => {
@@ -15,10 +15,10 @@ const Popup = () => {
     });
   }, []);
 
-  const changeBackground = () => {
+  const changeBackground = (): void => {
     chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
       const tab = tabs[0];
-      if (tab.id) {
+      if (tab.id != null) {
         chrome.tabs.sendMessage(
           tab.id,
           {
@@ -39,7 +39,10 @@ const Popup = () => {
         <li>Current Time: {new Date().toLocaleTimeString()}</li>
       </ul>
       <button
-        onClick={() => setCount(count + 1)}
+        onClick={() => {
+          alert('iii')
+          setCount(count + 1)
+        }}
         style={{ marginRight: "5px" }}
       >
         count up
