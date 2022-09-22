@@ -10,13 +10,13 @@ const Popup = (): JSX.Element => {
   }, [count]);
 
   useEffect(() => {
-    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       setCurrentURL(tabs[0].url);
     });
   }, []);
 
   const changeBackground = (): void => {
-    chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
       const tab = tabs[0];
       if (tab.id != null) {
         chrome.tabs.sendMessage(
@@ -40,8 +40,8 @@ const Popup = (): JSX.Element => {
       </ul>
       <button
         onClick={() => {
-          alert('iii')
-          setCount(count + 1)
+          alert("iii");
+          setCount(count + 1);
         }}
         style={{ marginRight: "5px" }}
       >
